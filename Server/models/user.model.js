@@ -37,3 +37,8 @@ userSchema.pre('save', function (next) { // this will be invoked before excecuti
 });
 
 mongoose.model('User', userSchema);// register this user schema object inside Mongoose, it will be save in a collection with name users
+
+//Methods
+userSchema.methods.verifyPassword = function (password) {// instance method for userSchema
+    return bcrypt.compareSync(password, this.password);// bcrypt package object
+};
