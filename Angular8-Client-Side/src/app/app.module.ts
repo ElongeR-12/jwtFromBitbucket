@@ -13,6 +13,7 @@ import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { appRoutes } from './routes';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';// need the help router module class from library
+import { UserService } from './shared/user.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { SignInComponent } from './user/sign-in/sign-in.component';// need the h
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

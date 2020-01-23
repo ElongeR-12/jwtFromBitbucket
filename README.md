@@ -16,3 +16,5 @@ $  npm install --save jsonwebtoken passport passport-local lodash
 # new componenent signIn and userProfile/ singIn design and route
 
 # new component signIn and userProfile/ design login form
+
+# submit event of login form, to redirect to user-profile

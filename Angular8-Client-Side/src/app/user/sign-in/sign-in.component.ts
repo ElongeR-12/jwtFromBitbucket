@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {NgForm  } from "@angular/forms";
+import {UserService} from '../../shared/user.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-sign-in',
@@ -7,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService, private router : Router) { }
   model ={
     email :'',
     password:''
@@ -17,6 +20,18 @@ export class SignInComponent implements OnInit {
   serverErrorMessages: string;
   ngOnInit() {
 
+  }
+
+  onSubmit(form : NgForm){
+    this.userService.login(form.value).subscribe(
+      res => {
+        this.userService.setToken(res['token']);
+        this.router.navigateByUrl('/userprofile');
+      },
+      err => {
+        this.serverErrorMessages = err.error.message;
+      }
+    );
   }
 
 }
