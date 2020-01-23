@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from './user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,14 +13,20 @@ export class UserService {
     password: ''
   };
 
-  constructor(private http: HttpClient) { }
+  noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };// property noauth in the header, to add to the request which does not need authentication
 
+  constructor(private http: HttpClient) { }
+// HttpMethods
   postUser(user: User){
-    return this.http.post(environment.apiBaseUrl+'/register',user);
+    return this.http.post(environment.apiBaseUrl+'/register',user,this.noAuthHeader);// not need JWT in the header
   }
 
   login(authCredentials) {
-    return this.http.post(environment.apiBaseUrl + '/authenticate', authCredentials);
+    return this.http.post(environment.apiBaseUrl + '/authenticate', authCredentials, this.noAuthHeader);// not need JWT in the header
+  }
+
+  getUserProfile() {//to access to user profile// send JWT as part of the request header
+    return this.http.get(environment.apiBaseUrl + '/userProfile');
   }
 
   //Helper Methods
@@ -28,12 +35,16 @@ export class UserService {
     localStorage.setItem('token', token);
   }
 
+  getToken() {
+    return localStorage.getItem('token');
+  } 
+
   deleteToken() {//to delet token from local storage
     localStorage.removeItem('token');
   }
 
   getUserPayload() {// to achieve user information from payload
-    var token = localStorage.getItem('token');
+    var token = this.getToken();
     if (token) {
       var userPayload = atob(token.split('.')[1]);
       return JSON.parse(userPayload);

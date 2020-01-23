@@ -21,3 +21,5 @@ $  npm install --save jsonwebtoken passport passport-local lodash
 
 # block an unauthorized use from accessing this user-profile route/ secure private route
 $ ng g g auth
+
+# to show in user-profil the details of user like email then first name, last name, etc
