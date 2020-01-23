@@ -23,3 +23,5 @@ $  npm install --save jsonwebtoken passport passport-local lodash
 $ ng g g auth
 
 # to show in user-profil the details of user like email then first name, last name, etc
+
+# redirect user to user-profil when user is already authenticated and try to navigate to login
