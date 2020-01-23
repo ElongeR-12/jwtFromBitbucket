@@ -45,7 +45,9 @@ userSchema.methods.verifyPassword = function (password) {// instance method for 
 userSchema.methods.generateJwt = function () {
     return jwt.sign({ _id: this._id},// information for payload
         process.env.JWT_SECRET,// to send the secret code for encryption, in order to retrieve value of this property as per our project go to config 
-    );
+        {
+            expiresIn: process.env.JWT_EXP
+        });
 }
 
 mongoose.model('User', userSchema);// register this user schema object inside Mongoose, it will be save in a collection with name users
