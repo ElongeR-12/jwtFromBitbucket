@@ -15,6 +15,9 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';// need the help router module class from library
 import { UserService } from './shared/user.service';
 
+//other
+import {AuthGuard} from './auth/auth.guard';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,7 @@ import { UserService } from './shared/user.service';
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],
-  providers: [UserService],
+  providers: [AuthGuard, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

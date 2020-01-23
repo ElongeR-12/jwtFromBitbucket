@@ -27,4 +27,25 @@ export class UserService {
   setToken(token: string) {// receive a single parameter token
     localStorage.setItem('token', token);
   }
+
+  deleteToken() {//to delet token from local storage
+    localStorage.removeItem('token');
+  }
+
+  getUserPayload() {// to achieve user information from payload
+    var token = localStorage.getItem('token');
+    if (token) {
+      var userPayload = atob(token.split('.')[1]);
+      return JSON.parse(userPayload);
+    }
+    else
+      return null;
+  }
+  isLoggedIn() {//to verify whether a user is logged in or not
+    var userPayload = this.getUserPayload();
+    if (userPayload)
+      return userPayload.exp > Date.now() / 1000;// if exp time is over it return false if not JSON of user payload information
+    else
+      return false;
+  }
 }

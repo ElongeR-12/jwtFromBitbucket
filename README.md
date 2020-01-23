@@ -18,3 +18,6 @@ $  npm install --save jsonwebtoken passport passport-local lodash
 # new component signIn and userProfile/ design login form
 
 # submit event of login form, to redirect to user-profile
+
+# block an unauthorized use from accessing this user-profile route/ secure private route
+$ ng g g auth
