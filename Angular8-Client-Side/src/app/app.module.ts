@@ -10,13 +10,17 @@ import { UserComponent } from './user/user.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 
 //routes
-import { appRoutes } from './routes';// need the help router module class from library
+import { appRoutes } from './routes';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { SignInComponent } from './user/sign-in/sign-in.component';// need the help router module class from library
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    SignUpComponent
+    SignUpComponent,
+    UserProfileComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
