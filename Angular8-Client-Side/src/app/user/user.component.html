@@ -1,9 +1,9 @@
 <!--to wrap form element(in child: sign-up) with few div elements-->
 
-<div class="wrapper fadeInDown">
+<div class="wrapper">
     <div id="formContent">
-        <!--show the exact sign up registration form-->
-        <h2 class="inactive underlineHover">Sign Up</h2>
+        <h2 class="underlineHover"  routerLink="/login"  routerLinkActive="active"> Sign In </h2>
+        <h2 class="inactive underlineHover" routerLink="/signup" routerLinkActive="active">Sign Up</h2>
         <router-outlet></router-outlet><!--to load children: sign up-->
     </div>
 </div>
