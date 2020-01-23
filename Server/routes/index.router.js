@@ -5,4 +5,6 @@ const ctrlUser = require('../controllers/user.controller');//the exported functi
 
 router.post('/register', ctrlUser.register);// using router cte, we will configure routing inside this application for user signUp
 
+router.post('/authenticate', ctrlUser.authenticate);
+
 module.exports = router;// export router constant from this index router

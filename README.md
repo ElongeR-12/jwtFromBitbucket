@@ -8,3 +8,5 @@ $  npm install --save jsonwebtoken passport passport-local lodash
 # define this verify password function 
 
 # mention to use passport for authentication inside this node.js app
+
+# add post route function to send credentials email and password for auth

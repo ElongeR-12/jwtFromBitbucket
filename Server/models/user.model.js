@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');// first require bcryptjs
+const jwt = require('jsonwebtoken');// before define method used in user.controller.js
 
 var userSchema = new mongoose.Schema({
     fullName: {
@@ -36,9 +37,16 @@ userSchema.pre('save', function (next) { // this will be invoked before excecuti
     });
 });
 
-mongoose.model('User', userSchema);// register this user schema object inside Mongoose, it will be save in a collection with name users
-
 //Methods
 userSchema.methods.verifyPassword = function (password) {// instance method for userSchema
     return bcrypt.compareSync(password, this.password);// bcrypt package object
 };
+
+userSchema.methods.generateJwt = function () {
+    return jwt.sign({ _id: this._id},// information for payload
+        process.env.JWT_SECRET,// to send the secret code for encryption, in order to retrieve value of this property as per our project go to config 
+    );
+}
+
+mongoose.model('User', userSchema);// register this user schema object inside Mongoose, it will be save in a collection with name users
+
